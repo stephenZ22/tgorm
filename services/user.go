@@ -8,10 +8,10 @@ import (
 
 //type User models.User
 
-func CreateUser(name string, email string, age uint, gender uint) *models.User {
+func CreateUser(name string, email string, age uint, gender uint) models.User {
 
-	user := &models.User{Name: name, Email: email, Age: age, Gender: gender}
-	result := db.DB.Create(user)
+	user := models.User{Name: name, Email: email, Age: age, Gender: gender}
+	result := db.Connection.Create(&user)
 
 	if result.Error != nil {
 		log.Fatal("Create user error")
@@ -19,3 +19,5 @@ func CreateUser(name string, email string, age uint, gender uint) *models.User {
 
 	return user
 }
+
+func FindUserById() {}

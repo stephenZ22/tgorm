@@ -3,5 +3,5 @@ package db
 import "tgorm/models"
 
 func DataBaseMigrate() {
-	DB.AutoMigrate(&models.User{})
+	Connection.AutoMigrate(&models.User{})
 }

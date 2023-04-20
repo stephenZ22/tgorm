@@ -15,6 +15,6 @@ func init() {
 func main() {
 	fmt.Println("Hello Test Gorm 2222 ~~~")
 
-	user := services.CreateUser("李明", "liming3@tgorm.com", 22, 1)
+	user := services.CreateUser("王小明", "wangxiaoming@tgorm.com", 27, 1)
 	fmt.Println(user.GetName(), user.GetGender())
 }
