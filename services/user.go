@@ -49,3 +49,11 @@ func GetInfoSchoolByUserName(n string) string {
 	db.Connection.Model(&user).Association("UserInfo").Find(&info)
 	return info.School
 }
+
+func GetBankCardsByUserName(n string) (cards []models.UserBankCard) {
+
+	user := FindUserByName(n)
+
+	db.Connection.Model(&user).Association("UserBankCard").Find(&cards)
+	return
+}
