@@ -20,4 +20,32 @@ func CreateUser(name string, email string, age uint, gender uint) models.User {
 	return user
 }
 
-func FindUserById() {}
+func MultipleCreateUser(users []*models.User) []*models.User {
+	result := db.Connection.Create(users)
+
+	if result.Error != nil {
+		log.Fatal("Create users error")
+	}
+
+	return users
+}
+
+func FindUserById(id int) (user models.User) {
+	db.Connection.First(&user, id)
+
+	return
+}
+
+func FindUserByName(name string) (user models.User) {
+	db.Connection.Where("name = ?", name).First(&user)
+
+	return
+}
+
+func GetInfoSchoolByUserName(n string) string {
+	var info models.UserInfo
+	user := FindUserByName(n)
+
+	db.Connection.Model(&user).Association("UserInfo").Find(&info)
+	return info.School
+}
